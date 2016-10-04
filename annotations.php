@@ -21,7 +21,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 		die( 'Bad request JSON.' );
 	}
 
-	$pageTitle = 'Dashiki:' . trim( strtok( $request['annotation']['query'], ' ' ), '#' );
+	$pageTitle = trim( strtok( $request['annotation']['query'], ' ' ), '#' );
 	$pageUrl = 'https://meta.wikimedia.org/wiki/' . $pageTitle . '?action=raw';
 	$pageBody = file_get_contents( $pageUrl );
 
