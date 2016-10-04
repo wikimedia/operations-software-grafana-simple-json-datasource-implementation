@@ -43,26 +43,28 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 			$response[] = array(
 				'annotation' => $request['annotation'],
 				'title' => 'Event',
-				'time' => strval( strtotime( $annotationData['start'] ) ),
+				'time' => strval( strtotime( $annotationData['start'] ) ) . '000',
 				'text' => $annotationData['note'],
 			);
 		} else {
 			$response[] = array(
 				'annotation' => $request['annotation'],
 				'title' => 'Start Event',
-				'time' => strval( strtotime( $annotationData['start'] ) ),
+				'time' => strval( strtotime( $annotationData['start'] ) ) . '000',
 				'text' => 'Start: ' . $annotationData['note'],
 			);
 			$response[] = array(
 				'annotation' => $request['annotation'],
 				'title' => 'End Event',
-				'time' => strval( strtotime( $annotationData['end'] ) ),
+				'time' => strval( strtotime( $annotationData['end'] ) ) . '000',
 				'text' => 'End: ' . $annotationData['note'],
 			);
 		}
 	}
 
+	header( 'Access-Control-Allow-Origin: *' );
 	echo json_encode( $response );
+	return;
 }
 
 die( 'Request must be POST or OPTIONS.' );
