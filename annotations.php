@@ -21,7 +21,13 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 		die( 'Bad request JSON.' );
 	}
 
-	$pageTitle = trim( strtok( $request['annotation']['query'], ' ' ), '#' );
+	$query = trim( strtok( $request['annotation']['query'], ' ' ), '#' );
+	
+	if ( strpos( $query, 'metawiki:' ) !== 0 ) {
+		die( 'Couldn\'t find metawiki: prefix.' );
+	}
+	$pageTitle = substr( $query, 9 );
+	
 	$pageUrl = 'https://meta.wikimedia.org/wiki/' . $pageTitle . '?action=raw';
 	$pageBody = file_get_contents( $pageUrl );
 
