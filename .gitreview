@@ -1,0 +1,6 @@
+[gerrit]
+host=gerrit.wikimedia.org
+port=29418
+project=operations/software/grafana/simple-json-datasource-implementation.git
+defaultbranch=master
+defaultrebase=0
